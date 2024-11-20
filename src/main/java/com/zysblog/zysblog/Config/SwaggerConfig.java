@@ -19,8 +19,9 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo());
     }
 
+
     private ApiInfo apiInfo() {
-        Contact contact = new Contact("zyblogs", "http://localhost:8001", "1417243391@qq.com");
+        Contact contact = new Contact("zyblogs", "http://localhost:8008", "1417243391@qq.com");
         return new ApiInfo(
                 "swagger",
                 "文档",

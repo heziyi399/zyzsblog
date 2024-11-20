@@ -2,6 +2,7 @@ package com.zysblog.zysblog.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zysblog.zysblog.entity.TAdmin;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,7 +12,7 @@ import com.zysblog.zysblog.entity.TAdmin;
  * @author zy
  * @since 2024-10-30
  */
-//@Mapper
+@Mapper
 public interface TAdminMapper extends BaseMapper<TAdmin> {
 
 }

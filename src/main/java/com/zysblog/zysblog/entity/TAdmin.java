@@ -12,6 +12,7 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -82,7 +83,7 @@ public class TAdmin extends Model<TAdmin> {
     /**
      * 最后登录时间
      */
-    private LocalDateTime lastLoginTime;
+    private Date lastLoginTime;
 
     /**
      * 最后登录IP
