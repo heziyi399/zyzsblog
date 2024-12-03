@@ -2,11 +2,12 @@ package com.zysblog.zysblog.common.util;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.zysblog.zysblog.common.api.CloudApiRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.UUID;
-
+@Slf4j
 public class CloudApiRequestUtils {
     private static final Logger LOG = LoggerFactory.getLogger(CloudApiRequestUtils.class);
     /**
@@ -18,6 +19,7 @@ public class CloudApiRequestUtils {
     public static CloudApiRequest getRequestInfoFromReq(String requestBodyPayload) {
         CloudApiRequest cloudApiRequest = new CloudApiRequest();
         try {
+            log.info("requestBody:{}",requestBodyPayload);
             JsonNode requestBody = JsonUtil.getJsonNode(requestBodyPayload);
 
             // 解析requestBody，转为cloudapi对象

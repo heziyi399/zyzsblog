@@ -65,4 +65,19 @@ public class MailUtils {
         redisTemplate.opsForValue().set(key, idenCode, 60, TimeUnit.SECONDS);
         sendMail(mail);
     }
+    public void sendVerificationCodeByRandom(Mail mail,Integer identifyCode) {
+        // 判断当前待发送邮箱是否已经有验证码
+        String key = CODE_KEY_PREFIX + mail.getTo();
+        Integer code = (Integer) redisTemplate.opsForValue().get(key);
+        if (code != null) {
+            throw new ApiException(MAIL_REPEAT_EXCEPTION, "当前邮箱已经发送验证码");
+        }
+        // 生成随机 6位验证码
+        int idenCode = identifyCode;
+        mail.setSubject("LegendBlog");
+        mail.setFrom("LegendBlog");
+        mail.setText("【legendblog】您好,您的验证码为：" + idenCode);
+        redisTemplate.opsForValue().set(key, idenCode, 60, TimeUnit.SECONDS);
+        sendMail(mail);
+    }
 }

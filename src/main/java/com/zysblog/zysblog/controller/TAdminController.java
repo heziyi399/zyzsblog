@@ -15,11 +15,14 @@ import com.zysblog.zysblog.dto.vo.SimpleResult;
 import com.zysblog.zysblog.entity.TAdmin;
 import com.zysblog.zysblog.service.AppConfigService;
 import com.zysblog.zysblog.service.TAdminService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -105,6 +108,7 @@ public class TAdminController {
             // 生成token
             Map<String, Object> claims = new HashMap<>();
             claims.put("username", user.getUserName());
+            claims.put("userId",user.getUid());
             claims.put("password", user.getPassWord());
             String token = JwtUtil.genToken(claims);
             // 过滤密码
@@ -116,4 +120,6 @@ public class TAdminController {
         }
         return CloudApi3Util.getApi3Response(null);
     }
+
+
 }

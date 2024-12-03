@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -35,10 +37,22 @@ public class CloudApiFilter implements Filter {
             throws IOException, ServletException {
 
         HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
+
+        if (httpRequest.getRequestURI().contains("upload")) {
+            LOG.info("isFile");
+            CloudApiRequestUtils.setCloudApiRequest(CloudApiRequestUtils.buildRequestInfo(CloudApiRequestUtils.generateRequestId()));
+//
+//            // 处理文件上传
+//            HttpServletRequestUriWrapper wrapper =
+//                    new HttpServletRequestUriWrapper(
+//                            httpRequest, httpRequest.getRequestURI(), requestBodyPayload);
+//
+//            // 将请求传递到下一个过滤器（或者最终到达控制器方法）
+            filterChain.doFilter(servletRequest, servletResponse);
+            return ;
+            }
         String requestBodyPayload =
                 StreamUtils.copyToString(servletRequest.getInputStream(), StandardCharsets.UTF_8);
-        LOG.info("[CloudApiFilter] RequestBodyPayload -> {}", requestBodyPayload);
-
         // 解析Body参数，并存入threadLocal管理
         CloudApiRequest cloudApiRequest =
                 CloudApiRequestUtils.getRequestInfoFromReq(requestBodyPayload);
