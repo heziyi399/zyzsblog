@@ -60,10 +60,10 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/zyblog?useUnicode=true&useSSL=false&characterEncoding=utf-8");
-        dsc.setDriverName("com.mysql.jdbc.Driver");
+        dsc.setUrl("jdbc:mysql://154.8.200.20:3306/zyblog?useUnicode=true&useSSL=false&characterEncoding=utf-8");
+        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("zy");
-        dsc.setPassword("w3323656");
+        dsc.setPassword("Hzy3323656");
         mpg.setDataSource(dsc);
 
         // 包配置

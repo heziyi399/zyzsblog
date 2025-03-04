@@ -18,7 +18,9 @@ public class ResponseWrapper<T> {
     public static <T> ResponseWrapper<T> success(T data, String requestId) {
         return new ResponseWrapper<>(new CallResponse<>(data, requestId));
     }
-
+    public static <T> ResponseWrapper<T> error(String code, String message, String requestId) {
+        return new ResponseWrapper<>(new CallResponse<>(code, message, requestId));
+    }
     @Data
     @NoArgsConstructor
     @AllArgsConstructor

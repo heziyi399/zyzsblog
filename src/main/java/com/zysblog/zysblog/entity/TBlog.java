@@ -1,6 +1,7 @@
 package com.zysblog.zysblog.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
@@ -9,6 +10,7 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * <p>
@@ -156,5 +158,36 @@ public class TBlog extends Model<TBlog> {
     protected Serializable pkVal() {
         return this.uid;
     }
+    @TableField(exist = false)
+    private List<TTag> tagList;
 
+    /**
+     * 标题图
+     */
+    @TableField(exist = false)
+    private List<String> photoList;
+
+    /**
+     * 博客分类
+     */
+    @TableField(exist = false)
+    private TBlogSort blogSort;
+
+    /**
+     * 博客分类名
+     */
+    @TableField(exist = false)
+    private String blogSortName;
+
+    /**
+     * 博客标题图
+     */
+    @TableField(exist = false)
+    private String photoUrl;
+
+    /**
+     * 点赞数
+     */
+    @TableField(exist = false)
+    private Integer praiseCount;
 }

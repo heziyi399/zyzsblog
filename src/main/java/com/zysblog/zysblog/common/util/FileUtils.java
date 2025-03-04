@@ -26,6 +26,6 @@ public class FileUtils {
         PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, key, localFile);
         PutObjectResult result = cosClient.putObject(putObjectRequest);
         localFile.delete();
-        return result.getETag();
+        return "https://"+putObjectRequest.getBucketName()+".cos.ap-guangzhou.myqcloud.com/"+key;
     }
 }

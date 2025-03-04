@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/t-admin")
+@RequestMapping("/legendBlog/t-admin")
 @Slf4j
 public class FileController {
     @Autowired
@@ -27,6 +27,7 @@ public class FileController {
     public ResponseWrapper<String> uploadFile(@RequestParam("file") MultipartFile file) {
         try {
             String etag = cosService.uploadFile(file);
+            log.info("getFile:{}",etag);
             return CloudApi3Util.getApi3Response("true");
         } catch (Exception e) {
             return CloudApi3Util.getApi3Response("Failed to upload file: " + e.getMessage());

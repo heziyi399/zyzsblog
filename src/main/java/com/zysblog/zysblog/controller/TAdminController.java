@@ -2,11 +2,13 @@ package com.zysblog.zysblog.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.zysblog.zysblog.common.annotaion.OperationLog;
 import com.zysblog.zysblog.common.api.ResponseWrapper;
 import com.zysblog.zysblog.common.exception.ApiException;
 import com.zysblog.zysblog.common.exception.ErrorCode;
 import com.zysblog.zysblog.common.util.*;
 import com.zysblog.zysblog.common.util.web.RequestHolder;
+import com.zysblog.zysblog.dto.request.AddBlogRequest;
 import com.zysblog.zysblog.dto.request.EmailRequest;
 import com.zysblog.zysblog.dto.request.LoginAdminRequest;
 import com.zysblog.zysblog.dto.request.RegisterAdminRequest;
@@ -17,10 +19,13 @@ import com.zysblog.zysblog.service.AppConfigService;
 import com.zysblog.zysblog.service.TAdminService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -121,5 +126,16 @@ public class TAdminController {
         return CloudApi3Util.getApi3Response(null);
     }
 
+    @OperationLog(value = "增加博客")
+    @ApiOperation(value = "增加博客", notes = "增加博客", response = String.class)
+    @PostMapping("/addBlog")
+    public ResponseWrapper<SimpleResult> add(@RequestBody AddBlogRequest request) {
+
+        // 参数校验
+        //blogService.addBlog(request);
+        SimpleResult result = new SimpleResult(true);
+        return CloudApi3Util.getApi3Response(result);
+
+    }
 
 }

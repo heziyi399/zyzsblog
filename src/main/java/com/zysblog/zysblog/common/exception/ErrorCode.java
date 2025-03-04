@@ -14,6 +14,8 @@ public enum ErrorCode implements CloudApiErrorCode {
 
     CALL_API_ERROR("CallApiError", "调用其他模块接口失败"),
     INTERNAL_ERROR("InternalError", "系统内部异常"),
+    INVALID_TOKEN("InvalidToken","token无效"),
+    REPEAT_SUBMIT("RepeatSubmit","重复提交"),
     ;
 
 
